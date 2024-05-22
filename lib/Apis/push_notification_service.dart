@@ -13,10 +13,12 @@ class PushNotificationService {
       sound: true,
     );
 
+
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
       FirebaseMessaging.onMessage.listen((RemoteMessage message) {
         _handleMessage(context, message);
       });
+
 
       FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
         _handleMessage(context, message);
