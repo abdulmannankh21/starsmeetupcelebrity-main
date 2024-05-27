@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -39,7 +41,7 @@ class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen> {
     };
     notification = NotificationModel.fromJson(datee);
 
-    // log("this is map data; ${notification.celebrityName}");
+    // log("this is map data; ${appointment?.celebrityImage}");
     setState(() {});
   }
 
@@ -65,15 +67,17 @@ class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen> {
               height: MediaQuery.of(context).size.height * 0.5,
               decoration: BoxDecoration(
                 color: purpleColor,
-                image: appointment?.celebrityImage != null
-                    ? DecorationImage(
-                        image: NetworkImage(appointment!.celebrityImage!),
-                        fit: BoxFit.cover,
-                      )
-                    : const DecorationImage(
-                        image: AssetImage("assets/celebrityImage.png"),
-                        fit: BoxFit.cover,
-                      ),
+                image:
+                    //  appointment?.celebrityImage != null
+                    //     ? DecorationImage(
+                    //         image: NetworkImage(appointment!.celebrityImage!),
+                    //         fit: BoxFit.cover,
+                    //       )
+                    //     :
+                    DecorationImage(
+                  image: AssetImage("assets/celebrityImage.png"),
+                  fit: BoxFit.cover,
+                ),
               ),
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
               child: Align(

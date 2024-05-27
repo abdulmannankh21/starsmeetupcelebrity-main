@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:starsmeetupcelebrity/call/videoCall.dart';
 
 import '../../Apis/chat_service.dart';
 import '../../Utilities/app_colors.dart';
@@ -55,8 +58,17 @@ class _ChatPageState extends State<ChatPage> {
           (widget.appointment!.serviceName == "Video Meeting")
               ? IconButton(
                   icon: Icon(Icons.videocam),
-                  onPressed: () {
+                  onPressed: () async {
                     // Implement video call action
+
+                    User? user = await FirebaseAuth.instance.currentUser;
+                    print("this is user " + user!.email!);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AgoraCalls(
+                                  channelName: user.email!,
+                                )));
                   },
                 )
               : SizedBox.shrink(),
