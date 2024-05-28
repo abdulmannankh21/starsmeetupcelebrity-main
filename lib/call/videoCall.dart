@@ -1,13 +1,17 @@
+import 'dart:developer';
+
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:agora_uikit/agora_uikit.dart';
 import 'package:agora_uikit/models/agora_connection_data.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_timer_countdown/flutter_timer_countdown.dart';
 
 class AgoraCalls extends StatefulWidget {
   String channelName;
-  AgoraCalls({super.key, required this.channelName});
+  DateTime enTime;
+  AgoraCalls({super.key, required this.channelName, required this.enTime});
 
   @override
   State<AgoraCalls> createState() => _AgoraCallsState();
@@ -30,6 +34,7 @@ class _AgoraCallsState extends State<AgoraCalls> {
   void initState() {
     super.initState();
     channel = widget.channelName;
+    log("this is channel ikd: $channel");
     // initAgora();
     if (channel != "" || channel != null) {
       initAgora();
@@ -64,7 +69,30 @@ class _AgoraCallsState extends State<AgoraCalls> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Agora Video Call'),
+        centerTitle: true,
+        title: Row(
+          children: [
+            Text(
+              "Will End ",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+            ),
+            TimerCountdown(
+              spacerWidth: 5,
+              enableDescriptions: false,
+              timeTextStyle:
+                  TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+              minutesDescription: "",
+              secondsDescription: "",
+              format: CountDownTimerFormat.minutesSeconds,
+              endTime: widget.enTime,
+              onEnd: () {
+                print("Timer finished");
+                _dispose();
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
       ),
       body: Stack(
         children: [
