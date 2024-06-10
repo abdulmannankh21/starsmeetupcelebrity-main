@@ -29,10 +29,23 @@ class _HomeScreenState extends State<HomeScreen> {
   void openDrawer() {
     _scaffoldKey.currentState!.openDrawer();
   }
+  NotificationServices notificationServices = NotificationServices();
 
   @override
   void initState() {
     _initializeFirebaseMessaging();
+    notificationServices.requestNotificationPermission();
+    notificationServices.forgroundMessage();
+    notificationServices.firebaseInit(context);
+    notificationServices.setupInteractMessage(context);
+    notificationServices.isTokenRefresh();
+
+    notificationServices.getDeviceToken().then((value){
+      if (kDebugMode) {
+        print('device token');
+        print(value);
+      }
+    });
     super.initState();
   }
 

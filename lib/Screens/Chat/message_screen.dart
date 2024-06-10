@@ -35,7 +35,72 @@ class _ChatPageState extends State<ChatPage> {
     _chatService = ChatService(widget.meetingId);
     _auth = FirebaseAuth.instance;
   }
-
+  // Future<void> sendNotification() async {
+  //   // Ensure widget.appointment is not null
+  //   if (widget.appointment == null) {
+  //     print('Appointment is null');
+  //     return;
+  //   }
+  //
+  //   // Get the celebrity ID
+  //   final String celebrityId = widget.appointment!.celebrityId!;
+  //
+  //   // Reference to the Firestore document
+  //   DocumentReference docRef = FirebaseFirestore.instance.collection('celebrities').doc(celebrityId);
+  //
+  //   try {
+  //     // Fetch the document snapshot
+  //     DocumentSnapshot docSnapshot = await docRef.get();
+  //
+  //     if (docSnapshot.exists) {
+  //       // Get the fcmtoken field
+  //       String? fcmtoken = docSnapshot['fcmtoken'] as String?;
+  //
+  //       if (fcmtoken != null) {
+  //         var data = {
+  //           'to': fcmtoken,
+  //           'notification': {
+  //             'title': 'Video Call Start',
+  //             'body': 'Subscribe to my channel',
+  //             'sound': 'jetsons_doorbell.mp3',
+  //           },
+  //           'android': {
+  //             'notification': {
+  //               'notification_count': 23,
+  //             },
+  //           },
+  //           'data': {
+  //             'type': 'msj',
+  //             'id': 'Asif Taj',
+  //           },
+  //         };
+  //
+  //         await http.post(
+  //           Uri.parse('https://fcm.googleapis.com/fcm/send'),
+  //           body: jsonEncode(data),
+  //           headers: {
+  //             'Content-Type': 'application/json; charset=UTF-8',
+  //             'Authorization': 'key=YOUR_SERVER_KEY_HERE', // Replace with your actual server key
+  //           },
+  //         ).then((response) {
+  //           if (kDebugMode) {
+  //             print(response.body.toString());
+  //           }
+  //         }).onError((error, stackTrace) {
+  //           if (kDebugMode) {
+  //             print(error);
+  //           }
+  //         });
+  //       } else {
+  //         print('fcmtoken is null');
+  //       }
+  //     } else {
+  //       print('Document does not exist');
+  //     }
+  //   } catch (e) {
+  //     print('Error fetching document: $e');
+  //   }
+  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

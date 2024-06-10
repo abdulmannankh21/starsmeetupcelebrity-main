@@ -63,6 +63,7 @@ dependencies:
   agora_rtc_engine: ^6.3.1
   flutter_timer_countdown: ^1.0.7
   camera:
+  flutter_local_notifications:
 #  agora_rtc_engine: ^4.0.7
 
 dev_dependencies:
