@@ -1,4 +1,5 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:starsmeetupcelebrity/Apis/appointment_apis.dart';
@@ -10,6 +11,7 @@ import '../../Apis/user_apis.dart';
 import '../../GlobalWidgets/side_drawer_widget.dart';
 import '../../Utilities/app_routes.dart';
 import '../../models/appointment_model.dart';
+import '../../notification_service.dart';
 import '../AppointmentScreens/audio_appointment_details_screen.dart';
 
 final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
